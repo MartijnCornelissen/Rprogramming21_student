@@ -86,7 +86,7 @@ we get rid of the NA's. You should recognize the "pipe operator" `%>%` from the 
 ```{r}
 
 # Your code here
-
+writing code
 ```
 
 
