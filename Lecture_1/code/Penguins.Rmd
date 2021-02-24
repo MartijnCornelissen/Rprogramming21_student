@@ -28,8 +28,11 @@ This error message means that you did not install the package `palmerpenguins`. 
 
 
 ```{r}
-# Your code here
-
+install.packages('palmerpenguins')
+library(palmerpenguins)
+?penguins
+install.packages('tidyverse')
+library(tidyverse)
 ```
 
 
@@ -52,11 +55,12 @@ We will only use the first data set (penguins). You can have a look at the datas
 ```{r}
 
 data("penguins")
+summary(penguins)
 
 ```
 
 ```{r}
-summary(penguins)
+
 ```
 
 The dataset contains 8 variables about 344 individual penguins. If you want to know what all variables mean you can use the command `?penguins` and an description of this dataset will appear at the bottom right of your screen.
@@ -65,7 +69,7 @@ The dataset contains 8 variables about 344 individual penguins. If you want to k
 
 
 ```{r}
-# Your code here to explore the penguins dataset
+# ?penguins
 
 ```
 
@@ -85,8 +89,8 @@ we get rid of the NA's. You should recognize the "pipe operator" `%>%` from the 
 
 ```{r}
 
-# Your code here
-writing code
+# penguins <- penguins %>%
+  na.omit
 ```
 
 
@@ -149,7 +153,7 @@ In that case we can plot the data as a scatterplot (`geom_point()`)with
 
 
 ```{r}
-# Here your code
+# ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
 
 ```
 
@@ -165,7 +169,9 @@ We could experiment a bit with adding colors and shapes to this plot by trying t
 
 ```{r}
 
-# Here your code
+#ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm, color = "red", size = 3)) + geom_point(shape = 1)
+ggplot() +
+  geom_point(data = penguins, aes(x = flipper_length_mm, bill_length_mm), color = "red", size = 3, shape = 1)
 
 
 ```
@@ -180,7 +186,7 @@ It seems that there is a positive correlation between flipper length and bill le
 
 
 ```{r}
-# Here your code
+# ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex))
 
 ```
 
@@ -201,7 +207,11 @@ Finally,  we can add a theme (you can find some examples at https://ggplot2.tidy
 
 ```{r}
 
-# Here your code
+# ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez")
+ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") 
+ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") + xlab("flops") + ylab("flip")
+ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") + xlab("flops") + ylab("flip") +theme_bw()
+
 
 ```
 
@@ -230,8 +240,10 @@ We can split the plots per island by using for example
 
 
 ```{r}
-# Here your code
+#  ggplot() 
++     geom_boxplot(data = penguins, aes(x=species, y=body_mass_g, fill=sex)) + ylab("body mass in grams")
 
+ggplot() + geom_boxplot(data = penguins, aes(x=species, y = body_mass_g, fill = sex)) + facet_wrap(~ island) + ylab("body mass in grams")
 
 ```
 
@@ -240,7 +252,7 @@ We can also change the colors of our variable sex.
 
 Have a look at the following website
 
-https://ggplot2.tidyverse.org/reference/scale_manual.html
+
 
 
 
@@ -254,7 +266,7 @@ _hint_: Why does scale_color_manual not work?
 
 
 ```{r}
-# Here your code
+# ggplot() + geom_boxplot(data = penguins, aes(x=species, y = body_mass_g, fill = sex)) + facet_wrap(~ island) + ylab("body mass in grams") + scale_fill_manual(values = c("male" = "#DA020E", "female" = "#0000cd"), aesthetics = "fill", )
 
 
 ```
