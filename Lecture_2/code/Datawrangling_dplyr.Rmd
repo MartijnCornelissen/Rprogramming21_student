@@ -45,8 +45,8 @@ Please load the packages "tidyverse" en "gapminder". We also will use `ggrepel`
 
 
 ```{r}
-# Here your code
-
+# library(tidyverse)
+ library(gapminder)
 
 ```
 
@@ -89,7 +89,7 @@ Assignment:
 
 
 ```{r}
-# Here your code
+# df1=data_frame(gapminder%>% filter(country %in% Countries ))
 
 
 ```
@@ -102,8 +102,7 @@ Now we can make a lineplot of df1 with year on the x-axis and lifeExp on the y-a
 
 
 ```{r}
-# Here your code
-
+# ggplot(data=df1, aes(x= year, y=lifeExp, color=country)) + geom_line()
 
 ```
 
@@ -155,7 +154,11 @@ Assignment:
 
 ```{r}
 
-# Here your code
+# df2 =data_frame(gapminder%>% filter(country %in% Countries ))
+df2 <- gapminder
+country <- "Netherlands"
+Netherlands = ifelse(country == gapminder$country, "1", "0")
+df2 <- df2 %>% mutate(Netherlands= Netherlands)
 
 
 ```
@@ -173,7 +176,8 @@ _hint_ : don't forget to add a nice theme.
 
 
 ```{r}
-# Here your code
+# 
+ggplot(data=df2, aes(x= year, y=lifeExp, color= Netherlands, group = country, alpha = Netherlands)) + geom_line() +scale_fill_manual(values = c("1" = "red", "0" = "gray"), aesthetics = "color", ) + scale_alpha_manual(values = c("1"= 1, "0" = 0.3 ))
 
 
 ```
@@ -194,14 +198,17 @@ _hint_: check `?select` for help if needed.
 
 4. make a new column `ranking` by adding a vector 1:length(country)
 
-5. filter, so that you only keep the rows with raking 27 and 531 
+5. filter, so that you only keep the rows with ranking 27 and 531 
 
 
 
 ```{r}
 # Here your code
-
-
+df3 <- data_frame(gapminder %>% select(country, continent, pop, year))
+df3 <- data_frame( df3 %>% arrange(desc(pop)))
+df3 <- data_frame (df3 %>%
+                     mutate(ranking = 1:length(country)))
+df3 <- data_frame(df3 %>% filter(ranking == 27 | 531))
 ```
 
 
@@ -238,6 +245,7 @@ Assignment:
 
 ```{r}
 # Here your code
+df4 <- data_frame(gapminder) %>% filter(year == 2007)
 
 
 ```
