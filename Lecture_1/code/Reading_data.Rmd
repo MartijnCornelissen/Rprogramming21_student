@@ -14,6 +14,9 @@ We need a package to read in the excel files. I tend to make a Package section i
 ```{r}
 # Here your code
 
+ library(readxl)
+ 
+ library(tidyverse)
 
 ```
 
@@ -66,7 +69,7 @@ Assignment: read in the file "voetbal.csv" from the folder sourcedata and call t
 
 ```{r}
 # Here your code
-
+football <- read_excel("C:/Users/Martijn/Desktop/coding repositories/Rprogramming21_student/Lecture_1/sourcedata/football.xlsx")
 
 ```
 
@@ -78,10 +81,9 @@ By typing `football` we can view the data. Try to view the data.
 
 ```{r}
 # Here your code
-
+football
 
 ```
-
 
 
 
@@ -90,14 +92,14 @@ To just get an impression of the data frame we could either use `head(name of th
 
 ```{r}
 # Here your code
-
+head(football)
 
 ```
 
 
 ```{r}
 # Here your code
-
+tail(football)
 
 
 ```
@@ -114,7 +116,8 @@ Try to read in the `N1.csv` as done above and call the dataframe football1 (we h
 
 ```{r}
 # Here your code
-
+library(readxl)
+> football1 <- read_excel("C:/Users/Martijn/Desktop/coding repositories/Rprogramming21_student/Lecture_1/sourcedata/N1.xlsx")
 
 ```
 
@@ -126,7 +129,7 @@ And have a look at the data with `head(football1)`
 ```{r}
 
 # Here your code
-
+head(football1)
 
 
 ```
@@ -155,14 +158,14 @@ and view the data if it looks correct.
 
 ```{r}
 # Here your code
-
+football2 <- read.csv2("../sourcedata/N1.csv", sep=",")
 
 ```
 
 
 ```{r}
 # Here your code
-
+football2
 
 ```
 
@@ -239,7 +242,7 @@ First, read in *gender.csv* from the folder *sourcedata* as a dataframe with the
 
 ```{r}
 # Here your code
-
+gender <- read.csv2("../sourcedata/gender.csv")
 ```
 
 
@@ -248,7 +251,7 @@ and then check the structure of the dataframe `gender`
 
 ```{r}
 # Here your code
-
+str(gender)
 ```
 
 
@@ -278,7 +281,7 @@ By using `str()` again we can check if we succeeded:
 
 ```{r}
 # Here your code
-
+str(gender)
 
 ```
 
@@ -296,12 +299,12 @@ and then check the structure of your data and view the data
 
 ```{r}
 # Here your code
-
+Number1 <- as.numeric(gender$Number)
 ```
 
 ```{r}
 # Here your code
-
+str(Number1)
 
 ```
 

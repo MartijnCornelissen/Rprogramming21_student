@@ -245,7 +245,15 @@ Assignment:
 
 ```{r}
 # Here your code
-df4 <- data_frame(gapminder) %>% filter(year == 2007)
+df4 <- data_frame(gapminder) %>%
+  filter(year == 2007)%>%
+  group_by(continent) %>%
+summarise(Mean_LE = weighted.mean(lifeExp, pop), Mean_GDP = weighted.mean(gdpPercap, pop), groups = "drop") %>%
+  arrange(Mean_LE)
+
+   
+ 
+  
 
 
 ```
@@ -280,7 +288,7 @@ _hint 3_: You need to change some labels. To get the line breaks in the legend, 
 
 ```{r}
 # Here your code
-
+ggplot() +geom_point(data = df4, aes_(x = Mean_LE, y = reorder(continent, Mean_LE) ), color = "red") +geom_segment(df4, aes(x = 0, y =continent, xend = Mean_LE, yend = continent), color = "blue") +theme_bw() + labs(caption = "source: gapminder dataset", y = "", x = "Weighted mean of life expectancy", size = "Weighted mean\nof GDP\nper capita")
 
 ```
 
