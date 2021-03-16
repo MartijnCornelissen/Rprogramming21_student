@@ -128,7 +128,7 @@ Now try the command  `inner_join()` and inspect the results:
 
 ```{r}
 # Here your code
-merged_dataframe <- inner_join(data1, data2, by = "Hospital")
+merged_dataframe1 <- inner_join(data1, data2, by = "Hospital")
 ```
 
 
@@ -141,7 +141,7 @@ Inspect the results of `left_join()` and try to see what happens if you change t
 
 ```{r}
 # Here your code
-merged_dataframe <- left_join(data1, data2, by = "Hospital")
+merged_dataframe2 <- left_join(data1, data2, by = "Hospital")
 
 ```
 
@@ -153,7 +153,7 @@ Try `right_join()` as the mirror of `left_join()` and inspect the result.
 
 ```{r}
 # Here your code
-merged_dataframe <- right_join(data1, data2, by = "Hospital")
+merged_dataframe3 <- right_join(data1, data2, by = "Hospital")
 
 ```
 
@@ -185,7 +185,7 @@ The `semi_join()` command returns all hospitals present in the first and the sec
 ```{r}
 
 # Here your code
-merged_dataframe <- semi_join(data1, data2, by = "Hospital")
+merged_dataframe6 <- semi_join(data1, data2, by = "Hospital")
 
 ```
 
