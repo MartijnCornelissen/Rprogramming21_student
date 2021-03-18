@@ -11,7 +11,7 @@ For this notebook we need the  `tidyverse` package (which should already be inst
 
 ```{r}
 # Your code here
-
+library(tidyverse)
 ```
 
 
@@ -74,11 +74,11 @@ Predict which of the following calls will work.
 Then test your predictions by running the function calls in the R chunk below.
 
 ```{r}
-# log(x = 100, 10)
-# log(100)
-# log(base = exp(1))
-# log(exp(1)^3, exp(1))
-# log(base = 10, x = 100)
+log(x = 100, 10)
+ log(100)
+ #log(base = exp(1))
+log(exp(1)^3, exp(1))
+ log(base = 10, x = 100)
 ```
 
 
@@ -138,13 +138,14 @@ Create a function `paste_together` that takes two variables as 'input' and paste
 
 ```{r}
 # function 'paste_together' can paste two strings together
-paste_together <- function (...) {
+paste_together <- function (x, y) {
 
 # your code here
-  
+  paste(x, y)
 }
 
-# Test your function by excuting the code below
+# Test your function by executing the code below
+paste_together
 
 # paste two variables and create a new string
 paste_together("house number", 110)
@@ -183,23 +184,21 @@ Create a function that for the numbers _x_ to _x + 10_ calls the function `squar
 > Hint: use a _for loop_ within the function.
 
 ```{r}
-# my cool new function
-# my_func <- function(x){
-#
-# total <- 0
-#
-# for (...) {
-# total <- ...
-#}
-#
-# total # return total
-#}
+my_func <- function(x){
+   total <- 0
+   for (x in 1:10) {
+ total <- x + square_plus(x)
+  print(total)
+}
 
-# test your new function
-# my_func(2)
+ total <- 10
+}
+
+
+ my_func(2)
+
+
 ```
-
-
 
 # Exercise 5
 
@@ -219,7 +218,8 @@ vec <- c(2, 4, 6, 9)
 ```{r}
 # my cool new function
 my_func <- function(x){
-  # your code here
+  mean(vec^2) - (mean(vec))^2
+
 }
 
 # test your function, 
@@ -249,7 +249,8 @@ Use `readRDS()` to read in the dataset, and use the commands you learned earlier
 How many distinct reporter countries does your filtered dataset contain?
 
 ```{r}
-# your code here
+df_2018 <-readRDS("sourcedata/clothing_exports_aggregated.rds") %>%
+  filter(year == 2018)
 ```
 
 
@@ -296,9 +297,25 @@ For its arguments, we need two: a dataset, and it needs a country code.
 Turn the previous code chunk into a function that takes the dataset and a country code as arguments, and creates the plot for the supplied country code.
 
 ```{r}
-plot_top_five_receiving_countries(...){
+plot_top_five_receiving_countries <- function(df2, country_code){
   # code from the previous chunk adjusted to deal with any given country code
+  df_tmp <- df2 %>% filter(reporter_iso == country_code) %>% 
+  group_by(year) %>% slice_max(order_by = export_value_usd, n = 5)
+
+# extract country name from dataset
+  country_name <- unique(df_tmp$reporter_fullname_english)
+
+  plot_title <- paste("Top five countries that", country_name, "exports clothing to")
+
+  ggplot(df_tmp, aes(x = reorder(partner_fullname_english, export_value_usd), y = export_value_usd)) +
+  geom_point() +
+  expand_limits(y = 0) +
+  ggtitle(plot_title) +
+  xlab("Importing country") +
+  ylab("Export value (x billion dollars)") +
+  coord_flip()
 }
+
 ```
 
 
@@ -326,6 +343,12 @@ You can use the `print()` function to force the output created inside the for lo
 
 ```{r}
 # your code here
+for (i in 1:length(countries)){
+  cname <- countries[i]
+  plot_top_five_receiving_countries(df_2018, country_code = cname)
+}
+  
+  
 ```
 
 

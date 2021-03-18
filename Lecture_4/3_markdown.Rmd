@@ -65,16 +65,17 @@ Now try to make a list of main points (1,2,3) and sub-points (3a, 3b) and knit t
 
 **Exercise**:
 
-Make one word in this sentence bold.
+Make one word in **this** sentence bold.
 
 
 ### Tables
 
 ```
-First name | Surname |
------------ | ------------ |
-Gertjan | Verhoeven |
-Misja | Mikkers |
+First name | Surname     | Role
+Martijn    | Cornelissen | student
+-----------| ------------|--------
+Gertjan    | Verhoeven   | Teacher
+Misja      | Mikkers     | Teacher
 ```
 
 **Exercise**:
@@ -93,7 +94,7 @@ c. Add a column with the title `Role` and fill in the roles after the names (val
 **Exercise**:
 
 Insert a hyperlink to the Tilburg University website.
-
+{r} [Tilburg] (https://www.tilburguniversity.edu/nl)
 
 ### Pictures
 
@@ -102,9 +103,12 @@ Insert a hyperlink to the Tilburg University website.
 
 Insert the photo of Donald Knuth, the inventor of a predecessor of R Notebooks. The photo is in the images folder.
 
+![](images/knuth.jpeg)
+
 ### Formulas
 
 Write this image as an inline formula:
+$$a^2 + b^2 = c^2$$
 
 ![](images/formula.png)
 
