@@ -60,7 +60,7 @@ summary(penguins)
 ```
 
 ```{r}
-
+?penguins
 ```
 
 The dataset contains 8 variables about 344 individual penguins. If you want to know what all variables mean you can use the command `?penguins` and an description of this dataset will appear at the bottom right of your screen.
@@ -69,7 +69,7 @@ The dataset contains 8 variables about 344 individual penguins. If you want to k
 
 
 ```{r}
-# ?penguins
+?penguins
 
 ```
 
@@ -89,7 +89,7 @@ we get rid of the NA's. You should recognize the "pipe operator" `%>%` from the 
 
 ```{r}
 
-# penguins <- penguins %>%
+ penguins <- penguins %>%
   na.omit
 ```
 
@@ -153,7 +153,7 @@ In that case we can plot the data as a scatterplot (`geom_point()`)with
 
 
 ```{r}
-# ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
 
 ```
 
@@ -186,7 +186,7 @@ It seems that there is a positive correlation between flipper length and bill le
 
 
 ```{r}
-# ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex))
+ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex))
 
 ```
 
@@ -207,7 +207,7 @@ Finally,  we can add a theme (you can find some examples at https://ggplot2.tidy
 
 ```{r}
 
-# ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez")
+ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez")
 ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") 
 ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") + xlab("flops") + ylab("flip")
 ggplot() + geom_point(data = penguins, aes(x = flipper_length_mm, y =  bill_length_mm, color = species, shape = sex)) + labs(title = "penguinlifez", subtitle = "flippers", caption = "pingu") + xlab("flops") + ylab("flip") +theme_bw()
@@ -240,8 +240,6 @@ We can split the plots per island by using for example
 
 
 ```{r}
-#  ggplot() 
-+     geom_boxplot(data = penguins, aes(x=species, y=body_mass_g, fill=sex)) + ylab("body mass in grams")
 
 ggplot() + geom_boxplot(data = penguins, aes(x=species, y = body_mass_g, fill = sex)) + facet_wrap(~ island) + ylab("body mass in grams")
 

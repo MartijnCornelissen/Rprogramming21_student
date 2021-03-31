@@ -109,7 +109,7 @@ tail(football)
 
 ## a caveat
 
-Try to read in the `N1.csv` as done above and call the dataframe football1 (we have added a 1, to make a differemnce:
+Try to read in the `N1.csv` as done above and call the dataframe football1 (we have added a 1, to make a difference:
 
 
 
@@ -117,7 +117,7 @@ Try to read in the `N1.csv` as done above and call the dataframe football1 (we h
 ```{r}
 # Here your code
 library(readxl)
-> football1 <- read_excel("C:/Users/Martijn/Desktop/coding repositories/Rprogramming21_student/Lecture_1/sourcedata/N1.xlsx")
+football1 <- read_excel("C:/Users/Martijn/Desktop/coding repositories/Rprogramming21_student/Lecture_1/sourcedata/N1.xlsx")
 
 ```
 

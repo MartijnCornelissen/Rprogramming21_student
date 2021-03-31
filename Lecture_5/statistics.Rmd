@@ -52,6 +52,15 @@ Finally, calculate the mean height by sex group.
 
 ```{r}
 # your code here
+ggplot(df, aes(x= height)) +geom_histogram()
+
+ggplot(df, aes(x= height)) +geom_histogram() + facet_wrap(~sex)
+
+meansex <- df %>%
+  group_by(sex) %>%
+  summarise(height = mean(height))
+
+
 ```
 
 
@@ -90,6 +99,8 @@ Use the `sd()` function.
 
 ```{r}
 # your code here
+mean(df$height)
+sd(df$height)
 ```
 
 
@@ -107,7 +118,9 @@ Finally, plot a histogram of these 10.000 numbers. Play around with the number o
 
 ```{r}
 set.seed(123)
-
+numbers <- tibble(x = rnorm(10000, mean = 181, sd = 10))
+ggplot(numbers, aes(x= x)) + 
+  geom_histogram(binwidth =  3)
 # your code here
 ```
 
@@ -132,7 +145,9 @@ Calculate the mean for these 10 datapoints.
 
 ```{r}
 set.seed(123)
+dat <- rnorm(10, 181.4, 9.74)
 
+mean(dat)
 # your code here
 ```
 
@@ -147,11 +162,16 @@ Plot a histogram with these 10000 means.
 
 ```{r}
 # your code here
+set.seed(123)
 mean_vals <- c()
 
-for (i in ...){
-  mean_vals[i] <- mean(...)
+for (i in 1:10000){
+  dat <- rnorm(10, 181.4, 9.74)
+  mean_vals[i] <- mean(dat)
 }
+
+df2 <- tibble(mean_vals)
+ggplot(df2, aes(x = mean_vals)) +geom_histogram()
 ```
 
 
@@ -170,6 +190,10 @@ use `geom_vline()` for this.
 
 ```{r}
 # your code here
+ggplot(df2, aes(x = mean_vals)) +
+  geom_histogram() + 
+  geom_vline(xintercept = meansex$height, color ="red")
+
 ```
 
 

@@ -91,7 +91,8 @@ Assignment:
 
 ```{r}
 # 
-df1=data_frame(gapminder%>% filter(country %in% Countries ))
+Countries <- c("Netherlands", "Belgium", "Germany", "France", "United Kingdom")
+df1=tibble(gapminder%>% filter(country %in% Countries ))
 
 
 ```
@@ -158,7 +159,7 @@ Assignment:
 ```{r}
 
 # 
-df2 =data_frame(gapminder%>% filter(country %in% Countries ))
+df2 =tibble(gapminder%>% filter(country %in% Countries ))
 df2 <- gapminder
 country <- "Netherlands"
 Netherlands = ifelse(country == gapminder$country, "1", "0")
@@ -208,11 +209,11 @@ _hint_: check `?select` for help if needed.
 
 ```{r}
 # Here your code
-df3 <- data_frame(gapminder %>% select(country, continent, pop, year))
-df3 <- data_frame( df3 %>% arrange(desc(pop)))
-df3 <- data_frame (df3 %>%
+df3 <- tibble(gapminder %>% select(country, continent, pop, year))
+df3 <- tibble( df3 %>% arrange(desc(pop)))
+df3 <- tibble(df3 %>%
                      mutate(ranking = 1:length(country)))
-df3 <- data_frame(df3 %>% filter(ranking == 27 | 531))
+df3 <- tibble(df3 %>% filter(ranking == 27 | 531))
 ```
 
 
@@ -254,11 +255,7 @@ df4 <- gapminder %>%
   group_by(continent)%>%
   summarise(Mean_LE = weighted.mean(lifeExp, pop), Mean_GDP = weighted.mean(gdpPercap, pop), groups = 'drop') %>%
   arrange(Mean_LE)
-  
 
-
-   
- 
   
 
 
@@ -290,11 +287,16 @@ Check ?geom_segment or just google.
 _hint 3_: You need to change some labels. To get the line breaks in the legend, please google.
 
 
+```{r}
+ggplot()+
+  geom_point(data = df4, aes(x = Mean_LE, y = reorder(continent, Mean_LE), size = Mean_GDP), color = "blue") +
+  geom_segment(data = df4, aes(x = 0, y = continent, xend = Mean_LE, yend = continent), color = "blue")
+```
 
 
 ```{r}
 # Here your code
-ggplot(df4, aes(x = Mean_LE, y = continent, size = Mean_GDP)) +geom_point(color = "red") + geom_segment(df4, aes(xend = Mean_LE, yend = "continent"), color = "blue") + theme_classic()
+ggplot(df4, aes(x = Mean_LE, y = reorder(continent, Mean_LE), size = Mean_GDP)) +geom_point(color = "blue") + geom_segment(data = df4, aes(x = 0, y = continent, xend = Mean_LE, yend = continent), color = "blue", size = 1) + theme_classic() +labs(x = "Weighted mean of life expectancy", caption = "source: gapminder dataset") +expand_limits(x = 0)
 
 ```
 
@@ -316,7 +318,8 @@ Hints:
 
 ```{r}
 # Here your code
-
+ggplot()+
+  geom_point(data = df2, aes(x =gdpPercap, y = lifeExp))+ scale_x_log10()
 
 ```
 
